@@ -1,2 +1,7 @@
-# Manim-Projects
-Repo to store every visualization I generate with manim.
+# Manim Projects
+
+Run with ````manim project-name/main.py````.
+<br>
+A **media** folder (````cd project-name/media````) will be generated and filled with the images or videos that the project created.
+
+More about manim [here](https://www.manim.community/).
