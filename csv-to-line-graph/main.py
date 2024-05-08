@@ -2,7 +2,7 @@ from manim import *
 from config import *
 import csv
 
-class LineGraphExample(Scene):
+class CSVToLineGraph(Scene):
     
     def construct(self):
         self.fillValues()
