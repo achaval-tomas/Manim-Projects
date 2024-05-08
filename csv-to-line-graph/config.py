@@ -10,19 +10,26 @@ file = 'NodeTxQueueCaso1_0-1.csv'
 x_axis_label = "Simulation Time (sec)"
 y_axis_label = "NodeTx Queue Size"
 
-# Note: The range of values for each axis is automatically 
-# chosen to fit the data.
-# If you wish to customize it, check out the main file.
-
-# Numbers to be labeled on each axis (within the range) are 
+# Numbers to be labeled on each axis are 
 # ... , -step*2, -step, step, step*2, ...
+# for all values that fall within the axis' range.
 x_axis_step = 20
 y_axis_step = 5
+
+# Note: The range of values for each axis is automatically 
+# chosen to fit the data:
+# [  0  ... max ] if all values on the axis are positive
+# [ min ... max ] otherwise
+# If you wish to customize it, check out the main file.
 
 ''' OPTIONAL PARAMETERS '''
 
 # Select a color for the axes' label text.
 label_text_color = BLUE
+
+# Select the display size of each axis.
+x_axis_length = 12
+y_axis_length = 6
 
 # Select the thickness and color with which
 # the main plotting line will be drawn.

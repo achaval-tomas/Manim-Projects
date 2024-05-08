@@ -10,8 +10,8 @@ class CSVToLineGraph(Scene):
         plane = NumberPlane(
             x_range = (self.min_x, self.max_x, x_axis_step),
             y_range = (self.min_y, self.max_y, y_axis_step),
-            x_length = 12,
-            y_length = 6,
+            x_length = x_axis_length,
+            y_length = y_axis_length,
             background_line_style = {
                 "stroke_color": background_lines_color,
                 "stroke_width": background_lines_width,
