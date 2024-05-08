@@ -10,9 +10,13 @@ class LineGraphExample(Scene):
         max_y = max(self.y_vals)
         plane = NumberPlane(
             x_range = (0, max_x*1.01, x_axis_step),
-            y_range = (0, max_y*1.25, y_axis_step),
+            y_range = (0, max_y*1.20, y_axis_step),
             x_length = 12,
             y_length = 6,
+            background_line_style = {
+                "stroke_width": background_lines_width,
+                "stroke_opacity": background_lines_opacity,
+                },
             axis_config={
                 "include_numbers": True,
                 "include_ticks": True,
@@ -29,7 +33,7 @@ class LineGraphExample(Scene):
             y_values = self.y_vals,
             line_color=GOLD_E,
             add_vertex_dots=False,
-            stroke_width = 3,
+            stroke_width = line_width,
             #vertex_dot_style=dict(stroke_width=1,  fill_color=PURPLE),
             #vertex_dot_radius=0.01
         )
