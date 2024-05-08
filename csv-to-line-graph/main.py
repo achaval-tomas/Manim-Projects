@@ -46,7 +46,8 @@ class LineGraphExample(Scene):
     def fillValues(self):
         self.x_vals = []
         self.y_vals = []
-        with open(file, 'r') as csvFile:
+        filepath = 'data/' + file
+        with open(f'{filepath}', 'r') as csvFile:
             reader = csv.reader(csvFile)
             for row in reader:
                 x,y = row
