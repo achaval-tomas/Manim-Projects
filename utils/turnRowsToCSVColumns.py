@@ -26,8 +26,13 @@ with open(f"{filepath}", 'r') as file:
     lines.append(file.readline())
 
 # Extract numeric content of each comma-separated element
-x_vals = [sub(r"[^0-9.]", "", v) for v in lines[0].split(",")] 
-y_vals = [sub(r"[^0-9.]", "", v) for v in lines[1].split(",")] 
+x_vals = [sub(r"[^0-9.]", "", x) for x in lines[0].split(",")] 
+y_vals = [sub(r"[^0-9.]", "", y) for y in lines[1].split(",")]
+
+# Remove empty values (those that were comma-separated 
+# in the file but didn't contain numeric characters)
+x_vals = [x for x in x_vals if x != ""]
+y_vals = [y for y in y_vals if y != ""] 
 
 # Amount of valid (x, y) pairs
 length = min(len(x_vals), len(y_vals))

@@ -1,5 +1,5 @@
-x=0, x=1, x=2, 3,  x=4,  x=5,  x=6, x=7
-y=0, y=1, and y=4, y=9, 16, y=25, y=36 some extra text
+x=0, x=1, x=2, 3,  x=4,  x=5,  x=6, x=7, and that is all
+y=0, y=1, and y=4, y=9, 16, y=25, y=36 some extra , text
 
 example file for turnRowsToCSVColumns.py
 these lines
