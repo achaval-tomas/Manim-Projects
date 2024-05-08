@@ -32,10 +32,10 @@ class CSVToLineGraph(Scene):
             x_values = self.x_vals,
             y_values = self.y_vals,
             line_color=GOLD_E,
-            add_vertex_dots=False,
+            add_vertex_dots=show_dots,
             stroke_width = line_width,
-            #vertex_dot_style=dict(stroke_width=1,  fill_color=PURPLE),
-            #vertex_dot_radius=0.01
+            vertex_dot_style=dict(fill_color=WHITE),
+            vertex_dot_radius=dot_radius
         )
 
         self.add(x_label)
