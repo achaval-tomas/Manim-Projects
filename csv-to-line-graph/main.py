@@ -21,21 +21,33 @@ class CSVToLineGraph(Scene):
                 "include_numbers": True,
                 "include_ticks": True,
                 },
-            x_axis_config={"label_direction":2*DOWN},
-            y_axis_config={"label_direction":2*LEFT},
+            x_axis_config = {
+                "label_direction":2*DOWN
+                },
+            y_axis_config = {
+                "label_direction":2*LEFT
+                },
         )
         plane.center()
-        x_label = plane.get_x_axis_label(Text(x_axis_label).scale(0.45), DOWN, 3*DOWN).set_color(BLUE)
-        y_label = plane.get_y_axis_label(Text(y_axis_label).scale(0.45), UR, 2*LEFT + 2*UP).set_color(BLUE)
+        x_label = plane.get_x_axis_label(
+            Text(x_axis_label).scale(0.45),
+            DOWN,
+            3*DOWN,
+        ).set_color(BLUE)
+        y_label = plane.get_y_axis_label(
+            Text(y_axis_label).scale(0.45),
+            UR,
+            2*LEFT + 2*UP,
+        ).set_color(BLUE)
         
         line_graph = plane.plot_line_graph(
             x_values = self.x_vals,
             y_values = self.y_vals,
-            line_color=GOLD_E,
-            add_vertex_dots=show_dots,
+            line_color = GOLD_E,
+            add_vertex_dots = show_dots,
             stroke_width = line_width,
-            vertex_dot_style=dict(fill_color=WHITE),
-            vertex_dot_radius=dot_radius
+            vertex_dot_style = dict(fill_color=WHITE),
+            vertex_dot_radius = dot_radius
         )
 
         self.add(x_label)
@@ -50,7 +62,7 @@ class CSVToLineGraph(Scene):
         with open(f'{filepath}', 'r') as csvFile:
             reader = csv.reader(csvFile)
             for row in reader:
-                x,y = row
+                x, y = row
                 self.x_vals.append(float(x))
                 self.y_vals.append(float(y))
         csvFile.close()
