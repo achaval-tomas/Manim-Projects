@@ -6,14 +6,14 @@ class CSVToLineGraph(Scene):
     
     def construct(self):
         self.fillValues()
-        max_x = max(self.x_vals)
-        max_y = max(self.y_vals)
+        
         plane = NumberPlane(
-            x_range = (0, max_x*1.01, x_axis_step),
-            y_range = (0, max_y*1.20, y_axis_step),
+            x_range = (self.min_x, self.max_x, x_axis_step),
+            y_range = (self.min_y, self.max_y, y_axis_step),
             x_length = 12,
             y_length = 6,
             background_line_style = {
+                "stroke_color": background_lines_color,
                 "stroke_width": background_lines_width,
                 "stroke_opacity": background_lines_opacity,
                 },
@@ -33,20 +33,20 @@ class CSVToLineGraph(Scene):
             Text(x_axis_label).scale(0.45),
             DOWN,
             3*DOWN,
-        ).set_color(BLUE)
+        ).set_color(label_text_color)
         y_label = plane.get_y_axis_label(
             Text(y_axis_label).scale(0.45),
             UR,
             2*LEFT + 2*UP,
-        ).set_color(BLUE)
+        ).set_color(label_text_color)
         
         line_graph = plane.plot_line_graph(
             x_values = self.x_vals,
             y_values = self.y_vals,
-            line_color = GOLD_E,
+            line_color = line_color,
             add_vertex_dots = show_dots,
-            stroke_width = line_width,
-            vertex_dot_style = dict(fill_color=WHITE),
+            stroke_width = line_thickness,
+            vertex_dot_style = dict(fill_color=dot_color),
             vertex_dot_radius = dot_radius
         )
 
@@ -65,4 +65,8 @@ class CSVToLineGraph(Scene):
                 x, y = row
                 self.x_vals.append(float(x))
                 self.y_vals.append(float(y))
-        csvFile.close()
+                
+        self.max_x = max(self.x_vals)*1.01
+        self.min_x = min(0, min(self.x_vals)*1.01)
+        self.max_y = max(self.y_vals)*1.20
+        self.min_y = min(0, min(self.y_vals)*1.20)
