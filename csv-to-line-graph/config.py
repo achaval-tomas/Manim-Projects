@@ -4,11 +4,11 @@ from manim import *
 ''' REQUIRED PARAMETERS '''
 
 # Filename (must exist in data folder).
-file = 'NodeTxQueueCaso1_0-1.csv'
+file = 'example2.csv'
 
 # Select a name for each axis.
-x_axis_label = "Simulation Time (sec)"
-y_axis_label = "NodeTx Queue Size"
+x_axis_label = "Time (sec)"
+y_axis_label = "Function calls"
 
 # Numbers to be labeled on each axis are 
 # ... , -step*2, -step, step, step*2, ...
