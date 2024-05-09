@@ -6,9 +6,10 @@ from manim import *
 # Filename (must exist in data folder).
 file = 'example2.csv'
 
-# Select a name for each axis.
+# Select a name for each axis and whether or not to display them.
 x_axis_label = "Time (sec)"
 y_axis_label = "Function calls"
+show_labels  = True
 
 # Numbers to be labeled on each axis are 
 # ... , -step*2, -step, step, step*2, ...

@@ -50,8 +50,9 @@ class CSVToLineGraph(Scene):
             vertex_dot_radius = dot_radius
         )
 
-        self.add(x_label)
-        self.add(y_label)
+        if (show_labels):
+            self.add(x_label)
+            self.add(y_label)
         self.add(plane, line_graph)
         
     
