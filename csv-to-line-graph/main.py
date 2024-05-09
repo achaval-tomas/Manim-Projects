@@ -75,5 +75,5 @@ class CSVToLineGraph(Scene):
     
     def sortValues(self):
         pairs = sorted(zip(self.x_vals, self.y_vals), key=lambda pair: pair[0])
-        self.x_vals = [x for x, y in pairs]
-        self.y_vals = [y for x, y in pairs]
+        self.x_vals = [x for x, _ in pairs]
+        self.y_vals = [y for _, y in pairs]
