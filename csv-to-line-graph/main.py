@@ -65,8 +65,15 @@ class CSVToLineGraph(Scene):
                 x, y = row
                 self.x_vals.append(float(x))
                 self.y_vals.append(float(y))
+        
+        self.sortValues()
                 
         self.max_x = max(self.x_vals)*1.01
         self.min_x = min(0, min(self.x_vals)*1.01)
         self.max_y = max(self.y_vals)*1.20
         self.min_y = min(0, min(self.y_vals)*1.20)
+    
+    def sortValues(self):
+        pairs = sorted(zip(self.x_vals, self.y_vals), key=lambda pair: pair[0])
+        self.x_vals = [x for x, y in pairs]
+        self.y_vals = [y for x, y in pairs]
