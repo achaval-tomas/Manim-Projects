@@ -3,13 +3,11 @@
 #
 # Use-Case: Two functions (f and g) depend on the time, and you wish to plot
 # a graph of f vs g to compare their behaviours during a period of time.
-from copy import deepcopy
 import csv
 
 # Select filenames
 f_filename = 'example_f.csv'
 g_filename = 'example_g.csv'
-output_filename = 'combined_functions.csv'
 
 # OPTIONAL: scale the values of each function by this factor
 f_scale_factor = 1
@@ -23,52 +21,50 @@ precision = 5
 # "x, f(x)" -> "x +- allowance, f(x)"
 allowance = 0.1
 
-# Auxiliary function
-def sortValues(x_vals, y_vals):
-    pairs = sorted(zip(x_vals, y_vals), key=lambda pair: pair[0])
-    x_vals = [x for x, _ in pairs]
-    y_vals = [y for _, y in pairs]
+'''          DO NOT MODIFY BELOW THIS LINE             '''
 
-f_x_vals = []
-f_y_vals = []
-with open(f'{f_filename}', 'r') as csvFile:
-    reader = csv.reader(csvFile)
-    for row in reader:
-        x, y = row
-        f_x_vals.append(float(x))
-        f_y_vals.append(float(y))
+# Returns a list of (x, y) values from a file representing a function
+def file_to_list(filename):
+    l = []
+    with open(f'{filename}', 'r') as csvFile:
+        reader = csv.reader(csvFile)
+        for row in reader:
+            x, y = row
+            l.append((float(x), float(y)))
+    return l
                 
-g_x_vals = []
-g_y_vals = []
-with open(f'{g_filename}', 'r') as csvFile:
-    reader = csv.reader(csvFile)
-    for row in reader:
-        x, y = row
-        g_x_vals.append(float(x))
-        g_y_vals.append(float(y))
+f = file_to_list(f_filename)
+g = file_to_list(g_filename)
 
-sortValues(f_x_vals, f_y_vals)
-sortValues(g_x_vals, g_y_vals)
+x_key = lambda pair : pair[0]
+y_key = lambda pair : pair[1]
+
+f = sorted(f, key=x_key)
+g = sorted(g, key=x_key)
         
-min_x = max(f_x_vals[0], g_x_vals[0])
-max_x = min(f_x_vals[-1], g_x_vals[-1])
+min_x = max(x_key(f[0]), x_key(g[0]))
+max_x = min(x_key(f[-1]), x_key(g[-1]))
 
-f = zip(f_x_vals, f_y_vals)
-g = zip(g_x_vals, g_y_vals)
-
-def average(l):
+def avg(l):
     return round(sum(l)/len(l), 3)
 
+output_filename = f_filename.split('.')[0] + '_vs_' + g_filename.split('.')[0] + '.csv'
 step = round(1/precision, 3)
+
+pairs = set()
+x = min_x
+while (x <= max_x):
+    x = round(x, 3)
+    
+    f_x = [round(y_key(p), 3) for p in f if abs(x_key(p) - x) <= allowance]
+    g_x = [round(y_key(p), 3) for p in g if abs(x_key(p) - x) <= allowance]
+    
+    if (f_x and g_x):
+        pairs.add((avg(f_x)*f_scale_factor, avg(g_x)*g_scale_factor))
+        
+    x += step
+
+pairs = sorted(pairs, key=x_key)
 with open(f"{output_filename}", 'w') as file:
-    x = min_x
-    while (x <= max_x):
-        x = round(x, 3)
-        
-        f_x = [round(y, 3) for z, y in deepcopy(f) if abs(z - x) <= allowance]
-        g_x = [round(y, 3) for z, y in deepcopy(g) if abs(z - x) <= allowance]
-        
-        if (f_x and g_x):
-            file.write(f"{average(f_x)*f_scale_factor}, {average(g_x)*g_scale_factor}\n")
-            
-        x += step
+    for p in pairs:
+        file.write(f"{x_key(p)}, {y_key(p)}\n")
