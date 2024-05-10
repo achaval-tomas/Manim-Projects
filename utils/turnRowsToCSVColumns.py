@@ -6,7 +6,7 @@ from re import sub
 # values "x1, x2, ..." on each row.
 # It may contain other non-numeric caracters
 # which will be filtered out.
-filepath = 'example.txt'
+filepath = 'test-files/example.txt'
 
 # Example use-case:
 # content of text file (x and x^2)
@@ -38,7 +38,7 @@ y_vals = [y for y in y_vals if y != ""]
 length = min(len(x_vals), len(y_vals))
 
 # Create a new file and write rows as columns
-filename = filepath.split(".")[0]
+filename = filepath.split('/')[-1].split(".")[0] or 'output'
 with open(f"{filename}_converted.csv", 'w') as file:
     for i in range(length):
         file.write(f"{x_vals[i]}, {y_vals[i]}\n")

@@ -6,8 +6,8 @@
 import csv
 
 # Select filenames
-f_filename = 'example_f.csv'
-g_filename = 'example_g.csv'
+f_filename = 'test-files/example_f.csv'
+g_filename = 'test-files/example_g.csv'
 
 # OPTIONAL: scale the values of each function by this factor
 f_scale_factor = 1
@@ -80,8 +80,11 @@ while (x <= max_x):
         
     x += step
 
+def extract_filename(filepath):
+    return filepath.split('/')[-1].split('.')[0] or 'function'
+
 pairs = sorted(pairs, key=x_key)
-output_filename = f_filename.split('.')[0] + '_vs_' + g_filename.split('.')[0] + '.csv'
+output_filename = extract_filename(f_filename) + '_vs_' + extract_filename(g_filename) + '.csv'
 with open(f"{output_filename}", 'w') as file:
     for p in pairs:
         file.write(f"{x_key(p)}, {y_key(p)}\n")
