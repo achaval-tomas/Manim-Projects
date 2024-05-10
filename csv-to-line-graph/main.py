@@ -69,8 +69,8 @@ class CSVToLineGraph(Scene):
         
         self.sortValues()
                 
-        self.max_x = max(self.x_vals)*1.01
-        self.min_x = min(0, min(self.x_vals)*1.01)
+        self.max_x = max(self.x_vals)*1.05
+        self.min_x = min(0, min(self.x_vals)*1.05)
         self.max_y = max(self.y_vals)*1.20
         self.min_y = min(0, min(self.y_vals)*1.20)
     
