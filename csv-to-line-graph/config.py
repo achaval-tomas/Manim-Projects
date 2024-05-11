@@ -52,8 +52,9 @@ background_lines_opacity = 0.5
 # Allow some padding for the range of values shown in each direction.
 # If padding is set to 0 for direction A, then the axis that moves in
 # direction A will end at the farthest point in direction A from the file.
+# Else, it will go to the farthest point + padding in that direction.
 # NOTE: this only works when trim_to_range is set to False.
-right_padding  = 0.01
-left_padding   = 0.01
-top_padding    = 0.2
-bottom_padding = 0.2
+right_padding  = 1
+left_padding   = 0
+top_padding    = 7
+bottom_padding = 0

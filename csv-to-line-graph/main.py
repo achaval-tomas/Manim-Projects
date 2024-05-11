@@ -92,6 +92,6 @@ class CSVToLineGraph(Scene):
         
     def pad(self, value, padding, isMin):
         if (isMin):
-            return value*(1 + padding) if value <= 0 else value*(1 - padding)
+            return value + padding if value <= 0 else value - padding
         else:
-            return value*(1 + padding) if value >= 0 else value*(1 - padding)
+            return value + padding if value >= 0 else value - padding
