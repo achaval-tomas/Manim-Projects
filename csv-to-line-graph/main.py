@@ -83,15 +83,9 @@ class CSVToLineGraph(Scene):
         self.y_vals = [y for _, y in pairs]
     
     def setPaddedRanges(self):
-        self.min_x = self.pad(self.min_x, left_padding  , isMin=True )
-        self.max_x = self.pad(self.max_x, right_padding , isMin=False)
-        self.min_y = self.pad(self.min_y, bottom_padding, isMin=True )
-        self.max_y = self.pad(self.max_y, top_padding   , isMin=False)
+        self.min_x -= left_padding
+        self.max_x += right_padding
+        self.min_y -= bottom_padding
+        self.max_y += top_padding
         self.min_x = min(0, self.min_x)
         self.min_y = min(0, self.min_y)
-        
-    def pad(self, value, padding, isMin):
-        if (isMin):
-            return value + padding if value <= 0 else value - padding
-        else:
-            return value + padding if value >= 0 else value - padding
