@@ -17,11 +17,11 @@ show_labels  = True
 x_axis_step = 20
 y_axis_step = 5
 
-# Note: The range of values for each axis is automatically 
-# chosen to fit the data:
-# [  0  ... max ] if all values on the axis are positive
-# [ min ... max ] otherwise
-# If you wish to customize it, check out the main file.
+# If trim_to_range is set to True, each axis will only show
+# the range of values found in the file.
+# Else, the graph will be drawn as usual, with both axis
+# intersecting at the value of (0, 0).
+trim_to_range = False
 
 ''' OPTIONAL PARAMETERS '''
 
@@ -50,9 +50,9 @@ background_lines_width   = 1
 background_lines_opacity = 0.5
 
 # Allow some padding for the range of values shown in each direction.
-# If padding is set to 0 for direction A, then the plotted graph
-# in direction A will only show the values up to the farthest 
-# point in direction A from the file.
+# If padding is set to 0 for direction A, then the axis that moves in
+# direction A will end at the farthest point in direction A from the file.
+# NOTE: this only works when trim_to_range is set to False.
 right_padding  = 0.01
 left_padding   = 0.01
 top_padding    = 0.2

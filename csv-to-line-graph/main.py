@@ -6,7 +6,7 @@ class CSVToLineGraph(Scene):
     
     def construct(self):
         self.fillValues()
-        
+
         plane = NumberPlane(
             x_range = (self.min_x, self.max_x, x_axis_step),
             y_range = (self.min_y, self.max_y, y_axis_step),
@@ -22,13 +22,14 @@ class CSVToLineGraph(Scene):
                 "include_ticks": True,
                 },
             x_axis_config = {
-                "label_direction":2*DOWN
+                "label_direction":2*DOWN,
                 },
             y_axis_config = {
-                "label_direction":2*LEFT
+                "label_direction":2*LEFT,
                 },
         )
         plane.center()
+        
         x_label = plane.get_x_axis_label(
             Text(x_axis_label).scale(0.45),
             DOWN,
@@ -54,7 +55,6 @@ class CSVToLineGraph(Scene):
             self.add(x_label)
             self.add(y_label)
         self.add(plane, line_graph)
-        
     
     def fillValues(self):
         self.x_vals = []
@@ -68,13 +68,30 @@ class CSVToLineGraph(Scene):
                 self.y_vals.append(float(y))
         
         self.sortValues()
-                
-        self.max_x = max(self.x_vals)*(1+right_padding)
-        self.min_x = min(0, min(self.x_vals)*(1+left_padding))
-        self.max_y = max(self.y_vals)*(1+top_padding)
-        self.min_y = min(0, min(self.y_vals)*(1+bottom_padding))
+        
+        self.min_x = min(self.x_vals)
+        self.max_x = max(self.x_vals)
+        self.min_y = min(self.y_vals)
+        self.max_y = max(self.y_vals) 
+        
+        if (not trim_to_range):
+            self.setPaddedRanges()
     
     def sortValues(self):
         pairs = sorted(zip(self.x_vals, self.y_vals), key=lambda pair: pair[0])
         self.x_vals = [x for x, _ in pairs]
         self.y_vals = [y for _, y in pairs]
+    
+    def setPaddedRanges(self):
+        self.min_x = self.pad(self.min_x, left_padding  , isMin=True )
+        self.max_x = self.pad(self.max_x, right_padding , isMin=False)
+        self.min_y = self.pad(self.min_y, bottom_padding, isMin=True )
+        self.max_y = self.pad(self.max_y, top_padding   , isMin=False)
+        self.min_x = min(0, self.min_x)
+        self.min_y = min(0, self.min_y)
+        
+    def pad(self, value, padding, isMin):
+        if (isMin):
+            return value*(1 + padding) if value <= 0 else value*(1 - padding)
+        else:
+            return value*(1 + padding) if value >= 0 else value*(1 - padding)
