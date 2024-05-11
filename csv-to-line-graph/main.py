@@ -69,10 +69,10 @@ class CSVToLineGraph(Scene):
         
         self.sortValues()
                 
-        self.max_x = max(self.x_vals)*1.05
-        self.min_x = min(0, min(self.x_vals)*1.05)
-        self.max_y = max(self.y_vals)*1.20
-        self.min_y = min(0, min(self.y_vals)*1.20)
+        self.max_x = max(self.x_vals)*(1+right_padding)
+        self.min_x = min(0, min(self.x_vals)*(1+left_padding))
+        self.max_y = max(self.y_vals)*(1+top_padding)
+        self.min_y = min(0, min(self.y_vals)*(1+bottom_padding))
     
     def sortValues(self):
         pairs = sorted(zip(self.x_vals, self.y_vals), key=lambda pair: pair[0])

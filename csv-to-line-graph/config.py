@@ -48,3 +48,12 @@ dot_color  = WHITE
 background_lines_color   = BLUE
 background_lines_width   = 1
 background_lines_opacity = 0.5
+
+# Allow some padding for the range of values shown in each direction.
+# If padding is set to 0 for direction A, then the plotted graph
+# in direction A will only show the values up to the farthest 
+# point in direction A from the file.
+right_padding  = 0.01
+left_padding   = 0.01
+top_padding    = 0.2
+bottom_padding = 0.2
