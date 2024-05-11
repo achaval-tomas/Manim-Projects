@@ -69,23 +69,17 @@ class CSVToLineGraph(Scene):
         
         self.sortValues()
         
-        self.min_x = min(self.x_vals)
-        self.max_x = max(self.x_vals)
-        self.min_y = min(self.y_vals)
-        self.max_y = max(self.y_vals) 
+        p = 1 if use_padding else 0
+        self.min_x = min(self.x_vals) - left_padding   * p
+        self.max_x = max(self.x_vals) + right_padding  * p
+        self.min_y = min(self.y_vals) - bottom_padding * p
+        self.max_y = max(self.y_vals) + top_padding    * p
         
         if (not trim_to_range):
-            self.setPaddedRanges()
+            self.min_x = min(0, self.min_x)
+            self.min_y = min(0, self.min_y)
     
     def sortValues(self):
         pairs = sorted(zip(self.x_vals, self.y_vals), key=lambda pair: pair[0])
         self.x_vals = [x for x, _ in pairs]
-        self.y_vals = [y for _, y in pairs]
-    
-    def setPaddedRanges(self):
-        self.min_x -= left_padding
-        self.max_x += right_padding
-        self.min_y -= bottom_padding
-        self.max_y += top_padding
-        self.min_x = min(0, self.min_x)
-        self.min_y = min(0, self.min_y)
+        self.y_vals = [y for _, y in pairs] 

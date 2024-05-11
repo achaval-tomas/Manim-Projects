@@ -23,6 +23,10 @@ y_axis_step = 5
 # intersecting at the value of (0, 0).
 trim_to_range = False
 
+# Add some spare range around each axis to surround the graph.
+# Select the padding values in the optional parameters below.
+use_padding = True
+
 ''' OPTIONAL PARAMETERS '''
 
 # Select a color for the axes' label text.
@@ -53,8 +57,7 @@ background_lines_opacity = 0.5
 # If padding is set to 0 for direction A, then the axis that moves in
 # direction A will end at the farthest point in direction A from the file.
 # Else, it will go to the farthest point + padding in that direction.
-# NOTE: this only works when trim_to_range is set to False.
 right_padding  = 1.5
 left_padding   = 0
-top_padding    = 7
+top_padding    = 3
 bottom_padding = 0
