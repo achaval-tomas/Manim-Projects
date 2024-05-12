@@ -32,6 +32,10 @@ use_padding = True
 # Select a color for the axes' label text.
 label_text_color = BLUE
 
+# Select the text size of each axis label.
+x_label_size = 0.45
+y_label_size = 0.45
+
 # Select the display size of each axis.
 x_axis_length = 12
 y_axis_length = 6

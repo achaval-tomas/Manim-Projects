@@ -33,6 +33,10 @@ y_axis_step = 50
 x_label_text_color = WHITE
 y_label_text_color = ORANGE
 
+# Select the text size of each axis label.
+x_label_size = 0.4
+y_label_size = 0.5
+
 # Select the display size of each axis.
 x_axis_length = 12
 y_axis_length = 6
