@@ -1,6 +1,6 @@
 from manim import *
-import csv
 from config import *
+import csv
 
 class GraphCreator():
     def CreateGraph(self, file, color, s_factor, plane):
@@ -31,15 +31,6 @@ class GraphCreator():
                 self.y_vals.append(float(y)*s_factor)
         
         self.sortValues()
-        
-        self.min_x = min(self.x_vals) - left_padding   * use_padding
-        self.max_x = max(self.x_vals) + right_padding  * use_padding
-        self.min_y = min(self.y_vals) - bottom_padding * use_padding
-        self.max_y = max(self.y_vals) + top_padding    * use_padding
-        
-        if (not trim_to_range):
-            self.min_x = min(0, self.min_x)
-            self.min_y = min(0, self.min_y)
     
     def sortValues(self):
         pairs = sorted(zip(self.x_vals, self.y_vals), key=lambda pair: pair[0])

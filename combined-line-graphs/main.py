@@ -33,12 +33,12 @@ class CombinedGraphs(Scene):
             Text(x_axis_label).scale(0.45),
             DOWN,
             3*DOWN,
-        ).set_color(label_text_color)
+        ).set_color(x_label_text_color)
         y_label = plane.get_y_axis_label(
             Text(y_axis_label).scale(0.45),
             UR,
             2*LEFT + 2*UP,
-        ).set_color(label_text_color)
+        ).set_color(y_label_text_color)
         
         if (show_labels):
             self.add(x_label)

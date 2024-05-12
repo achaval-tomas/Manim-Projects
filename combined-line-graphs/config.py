@@ -27,20 +27,11 @@ y_range = [0, 220]
 x_axis_step = 50
 y_axis_step = 50
 
-# If trim_to_range is set to True, each axis will only show
-# the range of values found in the file.
-# Else, the graph will be drawn as usual, with both axis
-# intersecting at the value of (0, 0).
-trim_to_range = False
-
-# Add some spare range around each axis to surround the graph.
-# Select the padding values in the optional parameters below.
-use_padding = True
-
 ''' OPTIONAL PARAMETERS '''
 
-# Select a color for the axes' label text.
-label_text_color = BLUE
+# Select a color for each axis' label text.
+x_label_text_color = WHITE
+y_label_text_color = ORANGE
 
 # Select the display size of each axis.
 x_axis_length = 12
@@ -62,12 +53,3 @@ dot_color  = WHITE
 background_lines_color   = BLUE
 background_lines_width   = 1
 background_lines_opacity = 0.5
-
-# Allow some padding for the range of values shown in each direction.
-# If padding is set to 0 for direction A, then the axis that moves in
-# direction A will end at the farthest point in direction A from the file.
-# Else, it will go to the farthest point + padding in that direction.
-right_padding  = 1.5
-left_padding   = 0
-top_padding    = 3
-bottom_padding = 0
