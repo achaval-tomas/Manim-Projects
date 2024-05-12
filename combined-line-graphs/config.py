@@ -37,10 +37,8 @@ y_label_text_color = ORANGE
 x_axis_length = 12
 y_axis_length = 6
 
-# Select the thickness and color with which
-# the main plotting line will be drawn.
+# Select the thickness for the plotted lines.
 line_thickness = 2
-line_color     = GOLD_E
 
 # If show_dots = True, a dot will be drawn at each (x,y) point.
 # You can also select the dot's radius and color.
