@@ -10,8 +10,9 @@ colors        = [GOLD_E        , BLUE          , RED           ]
 scale_factors = [50            , 4             , 1             ]
 
 # Select a name for each axis and whether or not to display them.
-x_axis_label = "Time (sec)"
-y_axis_label = "Function calls"
+# You can also use one as a title and the other one as a description.
+x_axis_label = "Gold: Foo, Blue: Bar, Red: Baz"
+y_axis_label = "Lorem Ipsum over Sit Amet"
 show_labels  = True
 
 # IMPORTANT: Select the range of x-values and y-values to be shown
