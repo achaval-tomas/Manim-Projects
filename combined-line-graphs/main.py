@@ -44,9 +44,10 @@ class CombinedGraphs(Scene):
             self.add(x_label)
             self.add(y_label)
         
+        self.add(plane)
+        
         g = GraphCreator()
         for i in range(len(filenames)):
             linegraph = g.CreateGraph(filenames[i], colors[i], scale_factors[i], plane)
-            self.add(plane, linegraph)
+            self.add(linegraph)
         
-        self.add(plane)
