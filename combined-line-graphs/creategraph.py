@@ -3,6 +3,13 @@ from config import *
 import csv
 
 class GraphCreator():
+    
+    def CreateGraphs(self, plane):
+        ret = []
+        for i in range(len(filenames)):
+            ret.append(self.CreateGraph(filenames[i], colors[i], scale_factors[i], plane))
+        return ret
+    
     def CreateGraph(self, file, color, s_factor, plane):
 
         self.fillValues(file, s_factor)
@@ -16,7 +23,8 @@ class GraphCreator():
             vertex_dot_style = dict(fill_color=dot_color),
             vertex_dot_radius = dot_radius
         )
-        return line_graph
+        
+        return Create(line_graph) if create_video else line_graph
 
     
     def fillValues(self, file, s_factor):

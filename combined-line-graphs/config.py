@@ -9,6 +9,14 @@ filenames     = ['example1.csv', 'example2.csv', 'example3.csv']
 colors        = [GOLD_E        , BLUE          , RED           ]
 scale_factors = [50            , 4             , 1             ]
 
+# Whether or not to create a video animating the graphs.
+# You can also select a duration (in seconds) for the generated video.
+# Lastly, decide if each graph should be animated individually, 
+# or all of them simultaneously.
+create_video = True
+video_duration = 9
+animate_individually = True
+
 # Select a name for each axis and whether or not to display them.
 # You can also use one as a title and the other one as a description.
 x_axis_label = "Gold: Foo, Blue: Bar, Red: Baz"

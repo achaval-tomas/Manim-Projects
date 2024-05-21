@@ -29,25 +29,42 @@ class CombinedGraphs(Scene):
         )
         plane.center()
         
-        x_label = plane.get_x_axis_label(
+        self.x_label = plane.get_x_axis_label(
             Text(x_axis_label).scale(x_label_size),
             DOWN,
             3*DOWN,
         ).set_color(x_label_text_color)
-        y_label = plane.get_y_axis_label(
+        self.y_label = plane.get_y_axis_label(
             Text(y_axis_label).scale(y_label_size),
             UR,
             2*LEFT + 2*UP,
         ).set_color(y_label_text_color)
         
+        graphs = GraphCreator().CreateGraphs(plane)
+        
+        if create_video:
+            self.animateGraphs(plane, graphs)
+        else:
+            self.plotGraphs(plane, graphs)
+        
+    def animateGraphs(self, plane, graphs):
+        
+        self.play(Create(plane), run_time=2)
+        
         if (show_labels):
-            self.add(x_label)
-            self.add(y_label)
+            self.play(Create(self.x_label), run_time=1)
+            self.play(Create(self.y_label), run_time=1)
         
+        if not animate_individually:
+            self.play(*graphs, run_time=video_duration)
+        else:
+            div_duration = video_duration/len(graphs)
+            for graph in graphs:
+                self.play(graph, run_time=div_duration)
+    
+    def plotGraphs(self, plane, graphs):
+        if (show_labels):
+            self.add(self.x_label)
+            self.add(self.y_label)
         self.add(plane)
-        
-        g = GraphCreator()
-        for i in range(len(filenames)):
-            linegraph = g.CreateGraph(filenames[i], colors[i], scale_factors[i], plane)
-            self.add(linegraph)
-        
+        self.add(*graphs)
