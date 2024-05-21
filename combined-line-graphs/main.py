@@ -52,8 +52,8 @@ class CombinedGraphs(Scene):
         self.play(Create(plane), run_time=2)
         
         if (show_labels):
-            self.play(Create(self.x_label), run_time=1)
             self.play(Create(self.y_label), run_time=1)
+            self.play(Create(self.x_label), run_time=1)
         
         if not animate_individually:
             self.play(*graphs, run_time=video_duration)
